@@ -27,9 +27,10 @@ def test_streaming_split_stream_routing(tmp_path: Path):
     
     valid_out = tmp_path / "valid_records.csv"
     quarantine_out = tmp_path / "quarantine_records.csv"
+    diag_out = tmp_path / "diagnostics.jsonl"  # Added for Milestone 3 compatibility
     
     # 3. Act: Execute the split-stream filter loop
-    metrics = processor.process_csv_stream(input_csv, valid_out, quarantine_out)
+    metrics = processor.process_csv_stream(input_csv, valid_out, quarantine_out, diag_out)
     
     # 4. Assert: Structural telemetry assertions
     assert metrics["total_records"] == 4
